@@ -277,7 +277,7 @@ def playback_screen(filename_prefix):
 
     #All done
     print('All done!')
-    finished_image = REAL_PATH + '/assets/all_done_delayed_upload.png'
+    finished_image = REAL_PATH + '/assets/all_done.png'
     overlay_image(finished_image, 5)
 
 def main():

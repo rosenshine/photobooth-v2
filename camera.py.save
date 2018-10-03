@@ -106,10 +106,8 @@ except KeyError as exc:
 ##############################
 #Setup GPIO
 GPIO.setmode(GPIO.BCM)
-#GPIO.setwarnings(False)
 GPIO.setup(CAMERA_BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(EXIT_BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(10, GPIO.OUT)
 
 CAMERA = picamera.PiCamera()
 CAMERA.rotation = CAMERA_ROTATION
@@ -237,7 +235,6 @@ def prep_for_photo_screen(photo_number):
     overlay_image(get_ready_image, PREP_DELAY, 3, 'RGBA')
 
 def taking_photo(photo_number, filename_prefix):
-    GPIO.output(10, GPIO.LOW)
     """
     This function captures the photo
     """
@@ -252,9 +249,11 @@ def taking_photo(photo_number, filename_prefix):
 
     #Take still
     CAMERA.annotate_text = ''
-    print "LED on"
-    GPIO.output(10, GPIO.HIGH)
-    CAMERA.capture(filename)
+    CAMERA.capture(filename)    InstagramAPI = InstagramAPI('groundsformarriage','K0m0d0!2INS')
+    InstagramAPI.login()
+    InstagramAPI.getProfileData()
+    result = InstagramAPI.LastJson
+    print('Logged on to Instagram: ' + result['user'])
     print('Photo (' + str(photo_number) + ') saved: ' + filename)
     return filename
 
